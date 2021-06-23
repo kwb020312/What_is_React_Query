@@ -1,4 +1,9 @@
-import { useQuery, QueryClientProvider, QueryClient } from "react-query";
+import {
+  useQuery,
+  QueryClientProvider,
+  QueryClient,
+  useIsFetching,
+} from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 function InnerComp() {
@@ -10,14 +15,16 @@ function InnerComp() {
       .then((res) => res[0].author.login);
   });
 
-  if (status === "success") {
+  const isFetching = useIsFetching();
+
+  if (isFetching) {
+    return <h1>Loading..</h1>;
+  } else {
     return (
       <h1>
         Status : {status} , Data : {data}
       </h1>
     );
-  } else {
-    return <h1>Loading..</h1>;
   }
 }
 

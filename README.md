@@ -145,3 +145,32 @@ const { error } = useQuery("key", () => {
 ```
 
 하면 error 변수에 구조분해 할당으로 들어가게 됨.
+
+## useIsFetching
+
+useIsFetching을 통해 현재 fetch된 데이터가 완전히 호출되어 들어왔는지를 확인할 수 있으며 React Application에서 흔하게 볼 수 있는
+
+```javascript
+if (isfetch) {
+  return <h1>Now Loading..</h1>;
+}
+```
+
+과 같은 구문을
+
+```javascript
+import { useIsFetching } from "react-query";
+const isFetching = useIsFetching();
+
+if (isFetching) {
+  return <h1>Loading..</h1>;
+} else {
+  return (
+    <h1>
+      Status : {status} , Data : {data}
+    </h1>
+  );
+}
+```
+
+위와 같이 설정할 수 있다.
