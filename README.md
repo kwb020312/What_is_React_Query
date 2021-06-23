@@ -130,3 +130,18 @@ useQuery(["todos", "test"], callback);
 을 준 경우 아래와 같이 표시된다
 
 <img src="gitImages\DevState.jpg">
+
+## error catch
+
+error를 잡으려면 어떻게해야할까??
+
+```javascript
+const { error } = useQuery("key", () => {
+  // callback 함수 진행
+  if (error) {
+    throw new Error("NewtWork Error!!");
+  }
+});
+```
+
+하면 error 변수에 구조분해 할당으로 들어가게 됨.
