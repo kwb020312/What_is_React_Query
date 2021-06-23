@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+## React Query
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="gitImages\React_Query_Logo.jpg">
 
-## Available Scripts
+해당 Repository는 React Query의 공식문서를 보고 작성되었음을 미리 밝힙니다.
 
-In the project directory, you can run:
+<a href="https://react-query.tanstack.com/overview">React Query 공식문서 바로가기</a>
 
-### `npm start`
+<blockquote cite="https://react-query.tanstack.com/overview"><i>
+React Query는 종종 React의 누락 된 데이터 가져 오기 라이브러리로 설명되지만 더 기술적 인 용어로 보면 React 애플리케이션에서 서버 상태 를 가져오고, 캐시하고, 동기화하고, 업데이트 하는 작업이 수월해집니다.</i></blockquote>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+기본적으로 서버작업의 큰 도움을 준다는 것을 알 수 있다. 설치과정부터 React Query가 필요한 점까지 모두 배워보자.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 설치
 
-### `npm test`
+NPM & Yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+ $ npm i react-query
 
-### `npm run build`
+ $ yarn add react-query
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+CDN
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```html
+<script src="https://unpkg.com/react-query/dist/react-query.production.min.js"></script>
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+위의 과정으로 손쉽게 설치가 가능하다.
 
-### `npm run eject`
+## Debugging
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+디버깅은 별도의 모듈 설치 필요없이 내장되어있으며 매우 간단하게 꺼내와 사용이 가능하다
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```javascript
+import { ReactQueryDevtools } from "react-query";
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <!-- 해당 구문 작성시 DevTools가 동작한다 -->
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Embedded모드로
 
-## Learn More
+```html
+<ReactQueryDevtoolsPanel style="{styles}" className="{className}" />
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+또한 Devtool 이다.
