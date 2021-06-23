@@ -174,3 +174,11 @@ if (isFetching) {
 ```
 
 위와 같이 설정할 수 있다.
+
+## refetchOnWindowFocus
+
+refetchOnWindowFocus를 false로 설정하면 비활성화가 가능하다 사용 방법은
+
+```javascript
+const { data } = useQuery("todos", callback, { refetchOnWindowFocus: false });
+```
