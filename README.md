@@ -182,3 +182,14 @@ refetchOnWindowFocus를 false로 설정하면 비활성화가 가능하다 사�
 ```javascript
 const { data } = useQuery("todos", callback, { refetchOnWindowFocus: false });
 ```
+
+## enabled
+
+useQuery의 3번째 인자로 enabled를 false하면 컴포넌트가 호출되어도 자동으로 fetch하지 않음
+
+```javascript
+useQuery("todos", callback, {
+  // 컴포넌트가 로드될 때 자동으로 fetch하지 않겠다고 선언
+  enabled: false,
+});
+```
