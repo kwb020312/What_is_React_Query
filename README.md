@@ -55,3 +55,78 @@ Embedded모드로
 또한 Devtool 이다.
 
 ※ 아쉽게도 현재 React-Native는 해당 Devtools가 지원하지 않는다.
+
+## useQuery
+
+React-Query 에서 가장 중요한 Method는 useQuery인데,
+
+```javascript
+import { useQuery } from "react-query";
+
+const data = useQuery("이름", fetch함수);
+```
+
+로 전달하게되면 다양한 상태값이 반환된다
+
+<img src="gitImages\State.jpg">
+<img src="gitImages\Return_Data.jpg">
+
+useQuery 는 다양한 값으로 구조분해할당이 가능한데
+
+```javascript
+import { useQuery, QueryClientProvider, QueryClient } from "react-query";
+
+function InnerComp() {
+  // 내 경우 상태와 데이터를 할당받았다
+  const { status, data } = useQuery(["todos"], () => {
+    return fetch(
+      "https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits"
+    )
+      .then((res) => res.json())
+      .then((res) => res[0].author.login);
+  });
+  // 상태는 success , error , loading 이 있음
+  if (status === "success") {
+    return (
+      <h1>
+        Status : {status} , Data : {data}
+      </h1>
+    );
+  } else {
+    return <h1>Loading..</h1>;
+  }
+}
+
+function App() {
+  const queryClient = new QueryClient();
+  return (
+    // QueryClientProvider로 컴포넌트를 감싸주어야 실행됨
+    <QueryClientProvider client={queryClient}>
+      <InnerComp />
+    </QueryClientProvider>
+  );
+}
+
+export default App;
+```
+
+<img src="gitImages\Fetch_Success.jpg" />
+
+## Key
+
+useQuery를 사용할 때
+
+```javascript
+useQuery("key", callback);
+```
+
+의 형태를 사용하곤 한다. 이 때
+key는 react-query의 식별자로써 사용되며 배열또한 사용 가능하다. 즉
+
+```javascript
+useQuery(["todos", "test"], callback);
+```
+
+을 준 경우 아래와 같이 표시된다
+
+<img src="gitImages\DevState.jpg">
