@@ -193,3 +193,27 @@ useQuery("todos", callback, {
   enabled: false,
 });
 ```
+
+## retry
+
+useQuery를 쓰며 실패한 요청을 자동으로 다시 재시도 할 수 있는데 이에 몇 번 재시도 할것인지 정해주는 것과 딜레이를 입력해줄 수 있다.
+
+```javascript
+useQuery("todos", callback, {
+  // 요청 실패시 10번 반복함
+  retry: 10,
+});
+
+// ... App최상단 Client 정의부
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retryDelay: (idx) => 연산처리,
+    },
+  },
+});
+
+useQuery("todos", callback, {
+  retryDelay: 값,
+});
+```
