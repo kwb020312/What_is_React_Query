@@ -53,3 +53,5 @@ Embedded모드로
 ```
 
 또한 Devtool 이다.
+
+※ 아쉽게도 현재 React-Native는 해당 Devtools가 지원하지 않는다.
