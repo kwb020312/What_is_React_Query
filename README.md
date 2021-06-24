@@ -231,3 +231,21 @@ const { isPreviousData } = useQuery("key", callback, {
 ```
 
 useQuery의 세 번째 인자로 keepPreviousData를 true로 설정함으로써 조회가 가능해짐.
+
+## useInfiniteQuery
+
+조회사이트나 SNS웹 앱을 구축할 때 자주 요구되는것이 무한하게 조회되는 컨텐츠이다
+이를 구현하려면 useQuery만으론 힘든데 이를 생각하고 나온것이 useInfiniteQuery이다.
+
+```javascript
+import { useInfiniteQuery } from "react-query";
+
+const { data, fetchNextPage, hasNextPage } = useInfiniteQuery("key", callback, {
+  getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
+});
+```
+
+useInfiniteQuery또한 많은 변수가 할당될 수 있지만 가장 중요한 세 가지는
+data, fetchNextPage, hasNextPage이다.
+
+fetchNextPage함수를 호출하면 인자를 받아 useInfiniteQuery의 두번째 인자 함수를 다시 호출하고 hasNextPage변수는 다음 호출이 가능한지 확인해주는 변수이다.
