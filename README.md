@@ -217,3 +217,17 @@ useQuery("todos", callback, {
   retryDelay: 값,
 });
 ```
+
+## isPreviousData
+
+데이터를 여러번 처리하다보면 현재 내가 fetching한 데이터가 이전에 호출했던 데이터인지 비교해야될 때가 있는데, 데이터의 양이 많아질수록 이는 복잡해질 수 있다
+
+이를 해결할 수 있게 나온 방법이 isPreviousData이며 이전에 호출했던 데이터와 값이 같은지 아닌지를 비교하여 Bool값 으로 return해준다.
+
+```javascript
+const { isPreviousData } = useQuery("key", callback, {
+  keepPreviousData: true,
+});
+```
+
+useQuery의 세 번째 인자로 keepPreviousData를 true로 설정함으로써 조회가 가능해짐.

@@ -7,13 +7,19 @@ import {
 import { ReactQueryDevtools } from "react-query/devtools";
 
 function InnerComp() {
-  const { status, data } = useQuery(["todos", "test"], () => {
-    return fetch(
-      "https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits"
-    )
-      .then((res) => res.json())
-      .then((res) => res[0].author.login);
-  });
+  const { status, data, isPreviousData } = useQuery(
+    ["todos", "test"],
+    () => {
+      return fetch(
+        "https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits"
+      )
+        .then((res) => res.json())
+        .then((res) => res[0].author.login);
+    },
+    {
+      keepPreviousData: true,
+    }
+  );
 
   const isFetching = useIsFetching();
 
@@ -22,7 +28,8 @@ function InnerComp() {
   } else {
     return (
       <h1>
-        Status : {status} , Data : {data}
+        Status : {status} , Data : {data}, isPreviousData :{" "}
+        {isPreviousData.toString()}
       </h1>
     );
   }
