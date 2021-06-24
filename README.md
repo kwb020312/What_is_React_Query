@@ -249,3 +249,13 @@ useInfiniteQuery또한 많은 변수가 할당될 수 있지만 가장 중요한
 data, fetchNextPage, hasNextPage이다.
 
 fetchNextPage함수를 호출하면 인자를 받아 useInfiniteQuery의 두번째 인자 함수를 다시 호출하고 hasNextPage변수는 다음 호출이 가능한지 확인해주는 변수이다.
+
+## placeholderData
+
+만약 fetch가 오래걸리는 작업이라면 작업도중 화면이 밋밋할 수 있는데 HTML의 input태그와 같이 placeholder를 useQuery에 사용할 수 있다.
+
+```javascript
+const { data } = useQuery("key", callback, { placeholderData: "data" });
+```
+
+위와 같다면 data 변수에는 'data'라는 문자열 값이 담기게 되는것이다.

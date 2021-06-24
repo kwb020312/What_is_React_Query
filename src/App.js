@@ -18,6 +18,7 @@ function InnerComp() {
     },
     {
       keepPreviousData: true,
+      placeholderData: "kimwoobin",
     }
   );
 
